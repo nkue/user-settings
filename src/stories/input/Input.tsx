@@ -3,6 +3,7 @@ import classes from "./Input.module.css";
 import { useMemo } from "react";
 
 interface InputProps {
+	name?: string;
 	label?: string;
 	value?: string;
 	defaultValue?: string;
@@ -15,9 +16,9 @@ interface InputProps {
 }
 
 export const Input = ({
+	name,
 	label,
 	value,
-	defaultValue,
 	onChange,
 	placeholder,
 	type = "text",
@@ -36,9 +37,9 @@ export const Input = ({
 				{required && <span> *</span>}
 				<input
 					className={classes.input + (errorMessage ? ` ${classes.error}` : "")}
+					name={name}
 					type={type}
 					value={value}
-					defaultValue={defaultValue}
 					onChange={onChange}
 					placeholder={placeholder}
 					disabled={disabled}
