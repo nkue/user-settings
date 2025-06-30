@@ -2,29 +2,27 @@ import type React from "react";
 import classes from "./Checkbox.module.css";
 
 interface CheckboxProps {
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  label?: string;
-  defaultChecked?: boolean;
-  checked?: boolean;
+	onChange?: React.ChangeEventHandler<HTMLInputElement>;
+	label?: string;
+	defaultChecked?: boolean;
+	checked?: boolean;
 }
 
 export const Checkbox = ({
-  onChange,
-  label,
-  defaultChecked,
-  checked,
+	onChange,
+	label,
+	defaultChecked,
+	checked,
 }: CheckboxProps) => (
-  <div className={classes.wrapper}>
-    <label className={classes.label} data-testid="checkbox-label">
-      <input
-        type="checkbox"
-        className={classes.input}
-        defaultChecked={defaultChecked}
-        checked={checked}
-        onChange={onChange}
-        data-testid="checkbox-input"
-      />
-      {label}
-    </label>
-  </div>
+	<label className={classes.label} data-testid="checkbox-label">
+		<input
+			type="checkbox"
+			className={classes.input}
+			defaultChecked={defaultChecked}
+			checked={checked}
+			onChange={onChange}
+			data-testid="checkbox-input"
+		/>
+		{label}
+	</label>
 );
