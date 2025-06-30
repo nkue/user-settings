@@ -11,6 +11,7 @@ import {
 import { UserInput } from "./components/UserInput";
 import { Accordion } from "./components/Accordion";
 import { ToggleButton } from "./components/ToggleButton";
+import { ReloadIcon } from "./assets/ReloadIcon";
 
 if (import.meta.env.DEV && typeof window !== "undefined") {
 	import("./mocks/server").then(({ worker }) => worker.start());
@@ -115,26 +116,33 @@ function App() {
 			<form
 				className="card"
 				onSubmit={handleSubmit}
-				style={{ display: "flex", flexDirection: "column", gap: 16 }}
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					gap: 16,
+				}}
 			>
-				<Button
-					buttonStyle="primary"
-					size="large"
-					label="Reload User Settings"
-					onClick={async () => {
-						setError(null);
-						try {
-							const data = await fetchUserSettings();
-							setUserSettings(data);
-							setForm(data);
-						} catch (e: unknown) {
-							setError(
-								e instanceof Error ? e.message : "An unknown error occurred"
-							);
-						}
-					}}
-					disabled={saveStatus === "saving"}
-				/>
+				<div style={{ display: "flex", justifyContent: "flex-end" }}>
+					<Button
+						buttonStyle="secondary"
+						size="small"
+						label={<ReloadIcon />}
+						ariaLabel="Reload User Settings"
+						onClick={async () => {
+							setError(null);
+							try {
+								const data = await fetchUserSettings();
+								setUserSettings(data);
+								setForm(data);
+							} catch (e: unknown) {
+								setError(
+									e instanceof Error ? e.message : "An unknown error occurred"
+								);
+							}
+						}}
+						disabled={saveStatus === "saving"}
+					/>
+				</div>
 				<UserInput
 					label="Username:"
 					type="text"

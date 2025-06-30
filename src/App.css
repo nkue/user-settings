@@ -9,4 +9,5 @@
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 	padding: var(--space-lg);
 	margin-bottom: var(--space-lg);
+	min-width: 40vw;
 }
