@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import classes from "./ToggleButton.module.css";
 
 export interface ToggleButtonProps {
@@ -13,28 +13,25 @@ export interface ToggleButtonProps {
 export const ToggleButton = ({
 	label,
 	checked,
-	defaultChecked,
 	onChange,
 	disabled = false,
 }: ToggleButtonProps) => {
-	const isControlled = typeof checked === "boolean";
-	const [internalChecked, setInternalChecked] = useState(
-		defaultChecked ?? false
-	);
-	const isChecked = isControlled ? checked : internalChecked;
+	const isChecked = checked;
 
 	const handleToggle = useCallback(() => {
 		if (disabled) return;
-		if (!isControlled) setInternalChecked((prev) => !prev);
 		onChange?.(!isChecked);
-	}, [disabled, isControlled, isChecked, onChange]);
+	}, [disabled, isChecked, onChange]);
 
-	const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-		if (e.key === " " || e.key === "Enter") {
-			e.preventDefault();
-			handleToggle();
-		}
-	};
+	const handleKeyDown = useCallback(
+		(e: React.KeyboardEvent<HTMLButtonElement>) => {
+			if (e.key === " " || e.key === "Enter") {
+				e.preventDefault();
+				handleToggle();
+			}
+		},
+		[handleToggle]
+	);
 
 	const toggleButtonId = useMemo(() => {
 		return crypto.randomUUID();
