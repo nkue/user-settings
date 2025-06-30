@@ -1,0 +1,19 @@
+.label {
+	font-size: 15px;
+}
+
+.input {
+	display: block;
+	font-size: 15px;
+	padding: 6px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.error {
+	border-color: red;
+}
+
+.errorMessage {
+	color: red;
+}
