@@ -1,13 +1,16 @@
+@import "../../styles/theme.css";
+
 .root {
-	border-radius: 6px;
-	width: 320px;
-	background-color: #232020;
-	box-shadow: 0 2px 10px #000000;
-	font-family: inherit;
+	border-radius: var(--radius);
+	width: 100%;
+	max-width: 420px;
+	background-color: var(--color-bg);
+	box-shadow: 0 2px 10px #00000033;
+	font-family: var(--font-family);
 }
 
 .item {
-	border-bottom: 1px solid #444;
+	border-bottom: 1px solid var(--color-border);
 	background: none;
 }
 
@@ -16,29 +19,29 @@
 }
 
 .trigger:focus {
-	background-color: #2d2d2d;
-	outline: 2px solid #f035bb;
+	background-color: var(--color-bg-accent);
+	outline: 2px solid var(--color-primary);
 }
 
 [data-state="open"] .trigger {
-	background-color: #3a1a2c;
-	color: #fff;
+	background-color: var(--color-primary-hover);
+	color: var(--color-text);
 }
 
 .trigger {
 	width: 100%;
 	background: none;
 	border: none;
-	padding: 16px 20px;
-	font-size: 15px;
-	color: #f035bb;
+	padding: var(--space-md) var(--space-lg);
+	font-size: var(--font-size-label);
+	color: var(--color-text);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	cursor: pointer;
 	transition: background 0.2s, color 0.2s;
 	outline: none;
-	font-family: inherit;
+	font-family: var(--font-family);
 }
 
 .trigger[aria-disabled="true"] {
@@ -47,7 +50,7 @@
 }
 
 .chevron {
-	margin-left: 8px;
+	margin-left: var(--space-sm);
 	transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 	display: flex;
 	align-items: center;
@@ -59,10 +62,10 @@
 
 .content {
 	overflow: hidden;
-	font-size: 15px;
-	color: #f035bb;
-	background-color: #232020;
-	padding: 15px 20px 15px 20px;
+	font-size: var(--font-size-base);
+	color: var(--color-secondary);
+	background-color: var(--color-bg-light);
+	padding: var(--space-md) var(--space-lg);
 	animation: 300ms ease-out;
 	height: 90px;
 }

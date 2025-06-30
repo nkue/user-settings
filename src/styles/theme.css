@@ -1,0 +1,28 @@
+:root {
+	--font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--font-size-base: 16px;
+	--font-size-label: 15px;
+	--font-size-small: 14px;
+	--font-size-large: 18px;
+
+	--color-bg: #23272f;
+	--color-bg-light: #2d313a;
+	--color-bg-accent: #313543;
+	--color-primary: #4f46e5;
+	--color-primary-hover: #6366f1;
+	--color-secondary: #f035bb;
+	--color-text: #f3f4f6;
+	--color-text-muted: #b0b3b8;
+	--color-border: #444857;
+	--color-error: #e11d48;
+	--color-success: #22c55e;
+
+	--radius: 6px;
+	--radius-sm: 4px;
+
+	--space-xs: 4px;
+	--space-sm: 8px;
+	--space-md: 16px;
+	--space-lg: 24px;
+	--space-xl: 32px;
+}
