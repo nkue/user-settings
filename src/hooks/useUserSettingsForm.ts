@@ -8,13 +8,37 @@ import { normalizeCommPrefs } from "../utils/normalizeUserSettings";
 import { validateForm } from "../utils/validation";
 import type { CommPrefs, Validation } from "../types";
 
-export function useUserSettingsForm() {
-	const [form, setForm] = useState<
-		Partial<UserSettings & { communicationPreferences: CommPrefs }>
-	>({});
-	const [initialForm, setInitialForm] = useState<
-		Partial<UserSettings & { communicationPreferences: CommPrefs }>
-	>({});
+export type UserSettingsState = {
+	form: UserSettings;
+	commPrefs: CommPrefs;
+	accordionOpen: string;
+	validation: Validation;
+	saveStatus: "idle" | "saving" | "success" | "error";
+	isChanged: boolean;
+	isValid: boolean;
+	handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleDropdownChange: (value: string) => void;
+	handleToggleChange: (name: string, checked: boolean) => void;
+	handleCheckboxGroupChange: (name: keyof CommPrefs, checked: boolean) => void;
+	handleReload: () => Promise<void>;
+	handleSubmit: (e?: React.FormEvent) => Promise<void>;
+	success: string | null;
+	error: string | null;
+};
+
+const fallbackUserSettings: UserSettings = {
+	isDarkModeEnabled: true,
+	language: "en",
+	communicationPreferences: {
+		newsletter: false,
+		promotions: false,
+		productUpdates: false,
+	},
+};
+
+export function useUserSettingsForm(): UserSettingsState {
+	const [form, setForm] = useState(fallbackUserSettings);
+	const [initialForm, setInitialForm] = useState(fallbackUserSettings);
 	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState<string | null>(null);
 	const [saveStatus, setSaveStatus] = useState<
@@ -40,14 +64,11 @@ export function useUserSettingsForm() {
 
 	useEffect(() => {
 		setValidation(validateForm(form, touched));
-	}, [
-		form.username,
-		form.email,
-		touched.username,
-		touched.email,
-		form,
-		touched,
-	]);
+	}, [form, touched]);
+
+	const isValid = useMemo(() => {
+		return Object.values(validation).filter((value) => value).length === 0;
+	}, [validation]);
 
 	const isChanged = useMemo(() => {
 		return JSON.stringify(form) !== JSON.stringify(initialForm);
@@ -136,6 +157,7 @@ export function useUserSettingsForm() {
 		validation,
 		saveStatus,
 		isChanged,
+		isValid,
 		handleInputChange,
 		handleDropdownChange,
 		handleToggleChange,

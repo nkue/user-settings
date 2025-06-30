@@ -1,13 +1,11 @@
+import type { CommPrefs } from "../types";
+
 export interface UserSettings {
-	username: string;
-	email: string;
+	username?: string;
+	email?: string;
 	isDarkModeEnabled: boolean;
 	language: string;
-	communicationPreferences: {
-		newsletter: boolean;
-		productUpdates: boolean;
-	};
-	[key: string]: unknown;
+	communicationPreferences: CommPrefs;
 }
 
 export async function fetchUserSettings(): Promise<UserSettings> {

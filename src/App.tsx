@@ -2,66 +2,33 @@ import "./App.css";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { MainContent } from "./components/MainContent";
-import { useUserSettingsForm } from "./hooks/useUserSettingsForm";
+import { UserSettingsFormContextWrapper } from "./hooks/UserSettingsFormProvider";
 
 export default function App() {
-	const {
-		form,
-		commPrefs,
-		accordionOpen,
-		validation,
-		saveStatus,
-		isChanged,
-		handleInputChange,
-		handleDropdownChange,
-		handleToggleChange,
-		handleCheckboxGroupChange,
-		handleReload,
-		handleSubmit,
-		success,
-		error,
-	} = useUserSettingsForm();
-
 	return (
-		<div
-			style={{
-				minHeight: "100vh",
-				background: "var(--color-bg)",
-				color: "var(--color-text)",
-				fontFamily: "var(--font-family)",
-			}}
-		>
-			<Header onReload={handleReload} disabled={saveStatus === "saving"} />
-			<main
+		<UserSettingsFormContextWrapper>
+			<div
 				style={{
-					display: "flex",
-					flexDirection: "row",
-					gap: "var(--space-xl)",
-					padding: "var(--space-xl)",
-					justifyContent: "center",
+					minHeight: "100vh",
+					background: "var(--color-bg)",
+					color: "var(--color-text)",
+					fontFamily: "var(--font-family)",
 				}}
 			>
-				<Sidebar />
-				<MainContent
-					form={{
-						...form,
-						username: form.username ?? "",
-						email: form.email ?? "",
+				<Header />
+				<main
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						gap: "var(--space-xl)",
+						padding: "var(--space-xl)",
+						justifyContent: "center",
 					}}
-					commPrefs={commPrefs}
-					accordionOpen={accordionOpen}
-					validation={validation}
-					saveStatus={saveStatus}
-					isChanged={isChanged}
-					onInputChange={handleInputChange}
-					onDropdownChange={handleDropdownChange}
-					onToggleChange={handleToggleChange}
-					onCheckboxGroupChange={handleCheckboxGroupChange}
-					onSave={handleSubmit}
-					success={success}
-					error={error}
-				/>
-			</main>
-		</div>
+				>
+					<Sidebar />
+					<MainContent />
+				</main>
+			</div>
+		</UserSettingsFormContextWrapper>
 	);
 }

@@ -1,13 +1,30 @@
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const validateUsername = (username?: string) => {
+	if (!username) {
+		return "Username is required";
+	}
+};
+
+const validateEmail = (email?: string) => {
+	if (!email) {
+		return "Email is required";
+	}
+	if (!emailRegex.test(email)) {
+		return "Invalid email format";
+	}
+};
+
 export function validateForm(
 	form: { username?: string; email?: string },
 	touched: { [key: string]: boolean }
 ) {
-	const v: { username?: string; email?: string } = {};
-	if (touched.username && !form.username) v.username = "Username is required";
-	if (touched.email && !form.email) v.email = "Email is required";
-	else if (touched.email && form.email && !emailRegex.test(form.email))
-		v.email = "Invalid email format";
-	return v;
+	const validations: { username?: string; email?: string } = {};
+	if (touched.username) {
+		validations.username = validateUsername(form.username);
+	}
+	if (touched.email) {
+		validations.email = validateEmail(form.email);
+	}
+	return validations;
 }

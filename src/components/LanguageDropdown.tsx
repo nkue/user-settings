@@ -1,10 +1,5 @@
+import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 import Dropdown from "../stories/dropdown/Dropdown";
-
-interface LanguageDropdownProps {
-	value: string;
-	onChange: (value: string) => void;
-	disabled?: boolean;
-}
 
 const languageOptions = [
 	{ value: "option1", label: "Option 1" },
@@ -12,18 +7,19 @@ const languageOptions = [
 	{ value: "option3", label: "Option 3" },
 ];
 
-export function LanguageDropdown({
-	value,
-	onChange,
-	disabled,
-}: LanguageDropdownProps) {
+export function LanguageDropdown() {
+	const {
+		handleDropdownChange,
+		form: { language: value = "option1" },
+		saveStatus,
+	} = useUserSettingsFormContext();
 	return (
 		<Dropdown
 			options={languageOptions}
 			value={value}
-			onChange={onChange}
+			onChange={handleDropdownChange}
 			label="Select an Option"
-			disabled={disabled}
+			disabled={saveStatus === "saving"}
 		/>
 	);
 }

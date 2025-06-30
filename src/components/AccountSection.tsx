@@ -2,28 +2,11 @@ import styles from "./Section.module.css";
 import { UserInput } from "./UserInput";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { Headline } from "./Headline";
+import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 
-interface AccountForm {
-	username?: string;
-	email?: string;
-	language?: string;
-}
-
-interface AccountSectionProps {
-	form: AccountForm;
-	onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	onDropdownChange: (value: string) => void;
-	disabled: boolean;
-	validation: { username?: string; email?: string };
-}
-
-export function AccountSection({
-	form,
-	onInputChange,
-	onDropdownChange,
-	disabled,
-	validation,
-}: AccountSectionProps) {
+export function AccountSection() {
+	const { form, validation, saveStatus, handleInputChange } =
+		useUserSettingsFormContext();
 	return (
 		<section id="account" className={styles.section}>
 			<Headline>Account Information</Headline>
@@ -32,8 +15,8 @@ export function AccountSection({
 				type="text"
 				name="username"
 				value={form.username ?? ""}
-				onChange={onInputChange}
-				disabled={disabled}
+				onChange={handleInputChange}
+				disabled={saveStatus === "saving"}
 				required
 				errorMessage={validation.username}
 			/>
@@ -42,17 +25,13 @@ export function AccountSection({
 				type="email"
 				name="email"
 				value={form.email ?? ""}
-				onChange={onInputChange}
-				disabled={disabled}
+				onChange={handleInputChange}
+				disabled={saveStatus === "saving"}
 				required
 				errorMessage={validation.email}
 			/>
 			<div className={styles.sectionSpacing}>
-				<LanguageDropdown
-					value={form.language ?? "option1"}
-					onChange={onDropdownChange}
-					disabled={disabled}
-				/>
+				<LanguageDropdown />
 			</div>
 		</section>
 	);

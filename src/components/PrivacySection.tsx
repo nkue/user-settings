@@ -2,6 +2,7 @@ import styles from "./Section.module.css";
 import { Accordion } from "./Accordion";
 import { Checkbox } from "../stories/checkbox/Checkbox";
 import { Headline } from "./Headline";
+import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 
 type CommPrefs = {
 	newsletter: boolean;
@@ -15,17 +16,9 @@ const checkboxOptions = [
 	{ name: "productUpdates", label: "Product Updates" },
 ];
 
-interface PrivacySectionProps {
-	commPrefs: CommPrefs;
-	onCheckboxChange: (name: keyof CommPrefs, checked: boolean) => void;
-	accordionOpen: string;
-}
-
-export function PrivacySection({
-	commPrefs,
-	onCheckboxChange,
-	accordionOpen,
-}: PrivacySectionProps) {
+export function PrivacySection() {
+	const { commPrefs, accordionOpen, handleCheckboxGroupChange } =
+		useUserSettingsFormContext();
 	return (
 		<section id="privacy" className={styles.section}>
 			<Headline>Privacy Settings</Headline>
@@ -75,7 +68,7 @@ export function PrivacySection({
 												label={opt.label}
 												checked={commPrefs[opt.name as keyof CommPrefs]}
 												onChange={(e) =>
-													onCheckboxChange(
+													handleCheckboxGroupChange(
 														opt.name as keyof CommPrefs,
 														e.target.checked
 													)
