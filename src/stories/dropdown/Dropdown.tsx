@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import classes from "./Dropdown.module.css";
 
 export interface DropdownProps {
@@ -20,7 +20,15 @@ const Dropdown: React.FC<DropdownProps> = ({
 	label,
 	disabled = false,
 }) => {
-	const selectId = `dropdown-${label.replace(/\s+/g, "-").toLowerCase()}`;
+	const selectId = useMemo(() => {
+		return crypto.randomUUID();
+	}, []);
+	const handleChange = useCallback(
+		(e: React.ChangeEvent<HTMLSelectElement>) => {
+			onChange(e.target.value);
+		},
+		[onChange]
+	);
 
 	return (
 		<div className={classes.container}>
@@ -29,7 +37,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 				<select
 					className={classes.select}
 					value={value}
-					onChange={(e) => onChange(e.target.value)}
+					onChange={handleChange}
 					aria-label={label}
 					disabled={disabled}
 				>
