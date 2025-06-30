@@ -10,6 +10,7 @@ import {
 } from "./api/userSettings";
 import { UserInput } from "./components/UserInput";
 import { Accordion } from "./components/Accordion";
+import { ToggleButton } from "./components/ToggleButton";
 
 if (import.meta.env.DEV && typeof window !== "undefined") {
 	import("./mocks/server").then(({ worker }) => worker.start());
@@ -87,6 +88,13 @@ function App() {
 		setForm((prev) => ({ ...prev, language: value }));
 	};
 
+	const handleToggleChange = (checked: boolean) => {
+		setForm((prev) => ({
+			...prev,
+			isDarkModeEnabled: checked,
+		}));
+	};
+
 	const handleSubmit = async (e?: React.FormEvent) => {
 		if (e) e.preventDefault();
 		setSaveStatus("saving");
@@ -150,16 +158,12 @@ function App() {
 							trigger: "Preferences",
 							content: (
 								<>
-									<label>
-										Enable Dark Mode:
-										<input
-											type="checkbox"
-											name="isDarkModeEnabled"
-											checked={!!form.isDarkModeEnabled}
-											onChange={handleChange}
-											disabled={saveStatus === "saving"}
-										/>
-									</label>
+									<ToggleButton
+										label="Enable Dark Mode"
+										checked={!!form.isDarkModeEnabled}
+										onChange={handleToggleChange}
+										disabled={saveStatus === "saving"}
+									/>
 									<LanguageDropdown
 										value={form.language ?? "option1"}
 										onChange={handleLanguageChange}
