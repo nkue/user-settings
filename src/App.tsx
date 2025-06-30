@@ -9,6 +9,7 @@ import {
 	type UserSettings,
 } from "./api/userSettings";
 import { UserInput } from "./components/UserInput";
+import { Accordion } from "./components/Accordion";
 
 if (import.meta.env.DEV && typeof window !== "undefined") {
 	import("./mocks/server").then(({ worker }) => worker.start());
@@ -142,60 +143,75 @@ function App() {
 					onChange={handleInputChange}
 					disabled={saveStatus === "saving"}
 				/>
-				<label>
-					Enable Dark Mode:
-					<input
-						type="checkbox"
-						name="isDarkModeEnabled"
-						checked={!!form.isDarkModeEnabled}
-						onChange={handleChange}
-						disabled={saveStatus === "saving"}
-					/>
-				</label>
-				<LanguageDropdown
-					value={form.language ?? "option1"}
-					onChange={handleLanguageChange}
-					disabled={saveStatus === "saving"}
-				/>
-				<fieldset style={{ border: "none", padding: 0 }}>
-					<legend>Communication Preferences</legend>
-					<label>
-						Newsletter:
-						<input
-							type="checkbox"
-							name="communicationPreferences.newsletter"
-							checked={
-								!!(
-									form.communicationPreferences &&
-									form.communicationPreferences.newsletter
-								)
-							}
-							onChange={handleChange}
-							disabled={saveStatus === "saving"}
-						/>
-					</label>
-					<label>
-						Product Updates:
-						<input
-							type="checkbox"
-							name="communicationPreferences.productUpdates"
-							checked={
-								!!(
-									form.communicationPreferences &&
-									form.communicationPreferences.productUpdates
-								)
-							}
-							onChange={handleChange}
-							disabled={saveStatus === "saving"}
-						/>
-					</label>
-				</fieldset>
-				<Button
-					buttonStyle="toggle"
-					size="medium"
-					label=""
-					ariaLabel="Toggle Button"
-					disabled={true}
+				<Accordion
+					items={[
+						{
+							value: "preferences",
+							trigger: "Preferences",
+							content: (
+								<>
+									<label>
+										Enable Dark Mode:
+										<input
+											type="checkbox"
+											name="isDarkModeEnabled"
+											checked={!!form.isDarkModeEnabled}
+											onChange={handleChange}
+											disabled={saveStatus === "saving"}
+										/>
+									</label>
+									<LanguageDropdown
+										value={form.language ?? "option1"}
+										onChange={handleLanguageChange}
+										disabled={saveStatus === "saving"}
+									/>
+								</>
+							),
+						},
+						{
+							value: "communication",
+							trigger: "Communication Preferences",
+							content: (
+								<fieldset style={{ border: "none", padding: 0 }}>
+									<legend style={{ display: "none" }}>
+										Communication Preferences
+									</legend>
+									<label>
+										Newsletter:
+										<input
+											type="checkbox"
+											name="communicationPreferences.newsletter"
+											checked={
+												!!(
+													form.communicationPreferences &&
+													form.communicationPreferences.newsletter
+												)
+											}
+											onChange={handleChange}
+											disabled={saveStatus === "saving"}
+										/>
+									</label>
+									<label>
+										Product Updates:
+										<input
+											type="checkbox"
+											name="communicationPreferences.productUpdates"
+											checked={
+												!!(
+													form.communicationPreferences &&
+													form.communicationPreferences.productUpdates
+												)
+											}
+											onChange={handleChange}
+											disabled={saveStatus === "saving"}
+										/>
+									</label>
+								</fieldset>
+							),
+						},
+					]}
+					type="single"
+					collapsible
 				/>
 				<SaveLanguageButton
 					onClick={() => handleSubmit()}
