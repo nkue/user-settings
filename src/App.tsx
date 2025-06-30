@@ -4,10 +4,6 @@ import { Sidebar } from "./components/Sidebar";
 import { MainContent } from "./components/MainContent";
 import { useUserSettingsForm } from "./hooks/useUserSettingsForm";
 
-if (import.meta.env.DEV && typeof window !== "undefined") {
-	import("./mocks/server").then(({ worker }) => worker.start());
-}
-
 export default function App() {
 	const {
 		form,
