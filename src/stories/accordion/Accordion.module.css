@@ -67,7 +67,7 @@
 	background-color: var(--color-bg-light);
 	padding: var(--space-md) var(--space-lg);
 	animation: 300ms ease-out;
-	height: 90px;
+	height: min-content;
 }
 
 [data-state="open"] .content {

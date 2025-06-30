@@ -1,0 +1,97 @@
+import styles from "./Section.module.css";
+import { Accordion } from "./Accordion";
+import { Checkbox } from "../stories/checkbox/Checkbox";
+import { Headline } from "./Headline";
+
+type CommPrefs = {
+	newsletter: boolean;
+	promotions: boolean;
+	productUpdates: boolean;
+};
+
+const checkboxOptions = [
+	{ name: "newsletter", label: "Newsletter" },
+	{ name: "promotions", label: "Promotions" },
+	{ name: "productUpdates", label: "Product Updates" },
+];
+
+interface PrivacySectionProps {
+	commPrefs: CommPrefs;
+	onCheckboxChange: (name: keyof CommPrefs, checked: boolean) => void;
+	accordionOpen: string;
+}
+
+export function PrivacySection({
+	commPrefs,
+	onCheckboxChange,
+	accordionOpen,
+}: PrivacySectionProps) {
+	return (
+		<section id="privacy" className={styles.section}>
+			<Headline>Privacy Settings</Headline>
+			<Accordion
+				items={[
+					{
+						value: "data-usage",
+						trigger: "Data Usage Policy",
+						content: (
+							<div>
+								<p>
+									We use your data to improve your experience. You can read more
+									about our data usage policy in our documentation.
+								</p>
+							</div>
+						),
+					},
+					{
+						value: "third-party",
+						trigger: "Third-Party Access",
+						content: (
+							<div>
+								<p>
+									You can control which third-party services have access to your
+									account. Manage your integrations here.
+								</p>
+							</div>
+						),
+					},
+					{
+						value: "gdpr",
+						trigger: "GDPR Compliance",
+						content: (
+							<div>
+								<p>
+									We are committed to GDPR compliance. You can request your data
+									or account deletion at any time.
+								</p>
+								<div className={styles.sectionSpacing}>
+									<label className={styles.checkboxGroupLabel}>
+										Communication Preferences
+									</label>
+									<div className={styles.checkboxGroup}>
+										{checkboxOptions.map((opt) => (
+											<Checkbox
+												key={opt.name}
+												label={opt.label}
+												checked={commPrefs[opt.name as keyof CommPrefs]}
+												onChange={(e) =>
+													onCheckboxChange(
+														opt.name as keyof CommPrefs,
+														e.target.checked
+													)
+												}
+											/>
+										))}
+									</div>
+								</div>
+							</div>
+						),
+					},
+				]}
+				type="single"
+				collapsible
+				defaultValue={accordionOpen}
+			/>
+		</section>
+	);
+}

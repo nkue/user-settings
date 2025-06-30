@@ -1,0 +1,17 @@
+.sidebar {
+	max-width: max-content;
+	margin-right: var(--space-xl);
+}
+
+.navList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.link {
+	color: var(--color-primary);
+	text-decoration: none;
+	font-size: var(--font-size-label);
+	font-family: var(--font-family);
+}

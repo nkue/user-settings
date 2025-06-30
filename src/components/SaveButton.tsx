@@ -1,0 +1,21 @@
+import styles from "./SaveButton.module.css";
+import { Button } from "../stories/button/Button";
+
+interface SaveButtonProps {
+	onClick: (e?: React.FormEvent) => void;
+	disabled: boolean;
+}
+
+export function SaveButton({ onClick, disabled }: SaveButtonProps) {
+	return (
+		<div className={styles.saveButtonWrapper}>
+			<Button
+				buttonStyle="primary"
+				size="large"
+				label="Save Changes"
+				onClick={onClick}
+				disabled={disabled}
+			/>
+		</div>
+	);
+}
