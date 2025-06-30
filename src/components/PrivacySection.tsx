@@ -57,10 +57,10 @@ export function PrivacySection() {
 									We are committed to GDPR compliance. You can request your data
 									or account deletion at any time.
 								</p>
-								<div className={styles.sectionSpacing}>
-									<label className={styles.checkboxGroupLabel}>
+								<fieldset className={styles.sectionSpacing}>
+									<legend className={styles.checkboxGroupLabel}>
 										Communication Preferences
-									</label>
+									</legend>
 									<div className={styles.checkboxGroup}>
 										{checkboxOptions.map((opt) => (
 											<Checkbox
@@ -76,7 +76,7 @@ export function PrivacySection() {
 											/>
 										))}
 									</div>
-								</div>
+								</fieldset>
 							</div>
 						),
 					},
