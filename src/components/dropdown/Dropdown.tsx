@@ -40,6 +40,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 					onChange={handleChange}
 					aria-label={label}
 					disabled={disabled}
+					id={selectId}
 				>
 					{options.map((option) => (
 						<option key={option.value} value={option.value}>
