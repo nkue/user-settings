@@ -1,5 +1,5 @@
 import styles from "./Section.module.css";
-import { UserInput } from "../components/UserInput";
+import { Input } from "../stories/input/Input";
 import { LanguageDropdown } from "../components/LanguageDropdown";
 import { Headline } from "../stories/headline/Headline";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
@@ -10,7 +10,7 @@ export function AccountSection() {
 	return (
 		<section id="account" className={styles.section}>
 			<Headline>Account Information</Headline>
-			<UserInput
+			<Input
 				label="Username"
 				type="text"
 				name="username"
@@ -20,7 +20,7 @@ export function AccountSection() {
 				required
 				errorMessage={validation.username}
 			/>
-			<UserInput
+			<Input
 				label="Email Address"
 				type="email"
 				name="email"
