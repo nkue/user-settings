@@ -1,7 +1,6 @@
 import { AccountSection } from "./AccountSection";
 import { GeneralSection } from "./GeneralSection";
 import { PrivacySection } from "./PrivacySection";
-import { SaveButton } from "../compositions/SaveButton";
 import { StatusMessage } from "../components/status-message/StatusMessage";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 import { Button } from "../components/button/Button";
@@ -29,7 +28,9 @@ export function MainContent() {
 					onClick={handleReload}
 					disabled={saveStatus === "saving"}
 				/>
-				<SaveButton
+				<Button
+					buttonStyle="primary"
+					label="Save Changes"
 					onClick={handleSubmit}
 					disabled={!isChanged || saveStatus === "saving" || !isValid}
 				/>

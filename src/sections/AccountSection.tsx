@@ -1,12 +1,23 @@
 import styles from "./Section.module.css";
 import { Input } from "../components/input/Input";
-import { LanguageDropdown } from "../compositions/LanguageDropdown";
 import { Headline } from "../components/headline/Headline";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
+import Dropdown from "../components/dropdown/Dropdown";
+
+const languageOptions = [
+	{ value: "English", label: "English" },
+	{ value: "German", label: "German" },
+	{ value: "French", label: "French" },
+];
 
 export function AccountSection() {
-	const { form, validation, saveStatus, handleInputChange } =
-		useUserSettingsFormContext();
+	const {
+		form,
+		validation,
+		saveStatus,
+		handleInputChange,
+		handleDropdownChange,
+	} = useUserSettingsFormContext();
 	return (
 		<section id="account" className={styles.section}>
 			<Headline>Account Information</Headline>
@@ -31,7 +42,13 @@ export function AccountSection() {
 				errorMessage={validation.email}
 			/>
 			<div className={styles.sectionSpacing}>
-				<LanguageDropdown />
+				<Dropdown
+					options={languageOptions}
+					value={form.language}
+					onChange={handleDropdownChange}
+					label="Select a Language"
+					disabled={saveStatus === "saving"}
+				/>
 			</div>
 		</section>
 	);
