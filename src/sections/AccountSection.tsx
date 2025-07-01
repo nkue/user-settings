@@ -1,7 +1,7 @@
 import styles from "./Section.module.css";
 import { UserInput } from "../components/UserInput";
 import { LanguageDropdown } from "../components/LanguageDropdown";
-import { Headline } from "../components/Headline";
+import { Headline } from "../stories/headline/Headline";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 
 export function AccountSection() {
