@@ -33,5 +33,5 @@
 .errorMessage {
 	color: var(--color-error);
 	font-size: var(--font-size-small);
-	margin-top: var(--space-xs);
+	margin-bottom: var(--space-sm);
 }
