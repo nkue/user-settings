@@ -1,7 +1,7 @@
 import styles from "./Section.module.css";
-import { Accordion } from "./Accordion";
+import { Accordion } from "../components/Accordion";
 import { Checkbox } from "../stories/checkbox/Checkbox";
-import { Headline } from "./Headline";
+import { Headline } from "../components/Headline";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 
 type CommPrefs = {

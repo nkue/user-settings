@@ -2,8 +2,8 @@ import styles from "./MainContent.module.css";
 import { AccountSection } from "./AccountSection";
 import { GeneralSection } from "./GeneralSection";
 import { PrivacySection } from "./PrivacySection";
-import { SaveButton } from "./SaveButton";
-import { StatusMessage } from "./StatusMessage";
+import { SaveButton } from "../components/SaveButton";
+import { StatusMessage } from "../components/StatusMessage";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 import { Button } from "../stories/button/Button";
 

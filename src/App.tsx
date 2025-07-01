@@ -1,7 +1,7 @@
 import "./App.css";
-import { Header } from "./components/Header";
-import { Sidebar } from "./components/Sidebar";
-import { MainContent } from "./components/MainContent";
+import { Header } from "./sections/Header";
+import { Sidebar } from "./sections/Sidebar";
+import { MainContent } from "./sections/MainContent";
 import { UserSettingsFormContextWrapper } from "./hooks/UserSettingsFormProvider";
 
 export default function App() {
