@@ -11,7 +11,6 @@ export function SaveButton({ onClick, disabled }: SaveButtonProps) {
 		<div className={styles.saveButtonWrapper}>
 			<Button
 				buttonStyle="primary"
-				size="large"
 				label="Save Changes"
 				onClick={onClick}
 				disabled={disabled}

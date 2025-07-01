@@ -1,10 +1,8 @@
-import { useState } from "react";
-
 import "./button.css";
 
 export interface ButtonProps {
 	/** Is this the principal call to action on the page? */
-	buttonStyle?: "primary" | "secondary" | "toggle";
+	buttonStyle?: "primary" | "secondary";
 	/** How large should the button be? */
 	size?: "small" | "medium" | "large";
 	/** Button contents */
@@ -26,21 +24,17 @@ export const Button = ({
 	...props
 }: ButtonProps) => {
 	const mode = `storybook-button--${buttonStyle}`;
-	const [toggleState, setToggleState] = useState(false);
 	return (
 		<button
 			type="button"
 			className={[
 				"storybook-button",
 				`storybook-button--${size}`,
-				`${toggleState ? "storybook-button--toggled" : ""}`,
 				disabled ? "storybook-button--disabled" : "",
 				mode,
 			].join(" ")}
 			onClick={() => {
-				if (buttonStyle === "toggle") {
-					setToggleState(!toggleState);
-				} else if (props.onClick) {
+				if (props.onClick) {
 					props.onClick();
 				}
 			}}
@@ -49,9 +43,6 @@ export const Button = ({
 			{...props}
 		>
 			{label}
-			{buttonStyle === "toggle" && (
-				<span className="toggle-indicator">{toggleState ? "ON" : "OFF"}</span>
-			)}
 		</button>
 	);
 };
