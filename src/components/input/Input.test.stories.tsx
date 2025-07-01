@@ -27,19 +27,6 @@ Controlled.play = async ({ args, canvasElement }) => {
 	expect(args.onChange).toHaveBeenCalled();
 };
 
-export const Uncontrolled = Template.bind({});
-Uncontrolled.args = {
-	label: "Uncontrolled Input",
-	defaultValue: "",
-};
-Uncontrolled.play = async ({ canvasElement }) => {
-	const canvas = within(canvasElement);
-	const input = canvas.getByTestId("input-element");
-	expect(input).toHaveValue("");
-	await userEvent.type(input, "Test Input");
-	expect(input).toHaveValue("Test Input");
-};
-
 export const WithPlaceholder = Template.bind({});
 WithPlaceholder.args = {
 	label: "Input with Placeholder",

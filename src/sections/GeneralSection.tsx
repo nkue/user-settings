@@ -1,6 +1,6 @@
 import styles from "./Section.module.css";
-import { ToggleButton } from "../stories/toggle-button/ToggleButton";
-import { Headline } from "../stories/headline/Headline";
+import { ToggleButton } from "../components/toggle-button/ToggleButton";
+import { Headline } from "../components/headline/Headline";
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
 
 export function GeneralSection() {

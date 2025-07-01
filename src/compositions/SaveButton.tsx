@@ -1,5 +1,5 @@
 import styles from "./SaveButton.module.css";
-import { Button } from "../stories/button/Button";
+import { Button } from "../components/button/Button";
 
 interface SaveButtonProps {
 	onClick: (e?: React.FormEvent) => void;

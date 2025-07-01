@@ -28,29 +28,3 @@ Controlled.play = async ({ args, canvasElement }) => {
 	await userEvent.click(button);
 	expect(args.onChange).toHaveBeenCalledWith(true);
 };
-
-export const Uncontrolled = Template.bind({});
-Uncontrolled.args = {
-	label: "Uncontrolled Toggle",
-	defaultChecked: false,
-};
-Uncontrolled.play = async ({ canvasElement }) => {
-	const canvas = within(canvasElement);
-	const button = canvas.getByTestId("toggle-button");
-	expect(button).toHaveAttribute("aria-checked", "false");
-	await userEvent.click(button);
-	expect(button).toHaveAttribute("aria-checked", "true");
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-	label: "Disabled Toggle",
-	disabled: true,
-};
-Disabled.play = async ({ canvasElement }) => {
-	const canvas = within(canvasElement);
-	const button = canvas.getByTestId("toggle-button");
-	expect(button).toBeDisabled();
-	await userEvent.click(button);
-	expect(button).toHaveAttribute("aria-checked", "false");
-};

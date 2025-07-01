@@ -1,5 +1,5 @@
 import { useUserSettingsFormContext } from "../hooks/useUserSettingsFormContext";
-import Dropdown from "../stories/dropdown/Dropdown";
+import Dropdown from "../components/dropdown/Dropdown";
 
 const languageOptions = [
 	{ value: "option1", label: "Option 1" },
