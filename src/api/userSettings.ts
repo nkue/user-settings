@@ -4,6 +4,7 @@ export interface UserSettings {
 	username?: string;
 	email?: string;
 	isDarkModeEnabled: boolean;
+	isNotificationsEnabled: boolean;
 	language: string;
 	communicationPreferences: CommPrefs;
 }

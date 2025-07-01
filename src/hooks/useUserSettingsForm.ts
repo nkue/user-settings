@@ -28,6 +28,7 @@ export type UserSettingsState = {
 
 const fallbackUserSettings: UserSettings = {
 	isDarkModeEnabled: true,
+	isNotificationsEnabled: true,
 	language: "en",
 	communicationPreferences: {
 		newsletter: false,
